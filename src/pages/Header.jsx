@@ -2,11 +2,12 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 
-// Import product images for dropdown preview
+// Import assets
 import skyroImg from "../assets/fan1.webp";
 import inaraImg from "../assets/fan2.webp";
 import evaaraImg from "../assets/fan3.webp";
 import pedestalImg from "../assets/pedestal.webp";
+import anthemLogo from "../assets/Anthem-logo.png"; // ✅ Logo
 
 const Header = () => {
   const location = useLocation();
@@ -20,15 +21,13 @@ const Header = () => {
     { to: "#products", label: "Products", section: "products" },
     { to: "#about", label: "About Us", section: "about" },
     { to: "#dealer", label: "Dealers", section: "dealer" },
-    { to: "#store-locator", label: "Store Locator", section: "store-locator" }, // new Store Locator link
+    { to: "#store-locator", label: "Store Locator", section: "store-locator" },
     { to: "/support", label: "Support" },
-    { to: "#contact", label: "Contact", section: "contact" }, // changed Contact to hash link
+    { to: "#contact", label: "Contact", section: "contact" },
   ];
 
-  // Scrollspy effect
   useEffect(() => {
     const handleScroll = () => {
-      // Add all section IDs you want to track
       const sectionIds = ["home", "products", "about", "dealer", "contact"];
       let current = "home";
       for (const id of sectionIds) {
@@ -48,7 +47,6 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Smooth scroll for hash links
   const handleNavClick = (e, to) => {
     if (to.startsWith("#")) {
       e.preventDefault();
@@ -56,7 +54,7 @@ const Header = () => {
       const el = document.getElementById(id);
       if (el) {
         window.scrollTo({
-          top: el.offsetTop - 64, // adjust for header height
+          top: el.offsetTop - 64,
           behavior: "smooth",
         });
       }
@@ -64,17 +62,13 @@ const Header = () => {
     }
   };
 
-  // Product data for dropdown
   const ceilingFans = [
     { name: "SKYRO", image: skyroImg },
     { name: "INARA", image: inaraImg },
     { name: "eVAARA", image: evaaraImg },
   ];
-  const pedestalFans = [
-    { name: "PEDESTAL PRO", image: pedestalImg },
-  ];
+  const pedestalFans = [{ name: "PEDESTAL PRO", image: pedestalImg }];
 
-  // Hide dropdown when clicking outside
   useEffect(() => {
     if (!showProductsDropdown) return;
     const handler = (e) => {
@@ -89,17 +83,19 @@ const Header = () => {
   return (
     <header className="fixed top-0 left-0 w-full z-50">
       <div className="mx-auto max-w-7xl px-4 md:px-10">
-        <div className="mt-3 mb-3 rounded-2xl shadow-xl bg-slate-900/80 backdrop-blur-lg border border-white/30 flex justify-between items-center px-4 py-2 md:py-3 transition-all duration-300">
+        <div className="mt-3 mb-3 rounded-2xl shadow-md bg-white/80 backdrop-blur-md border border-blue-100 flex justify-between items-center px-4 py-2 md:py-3 transition-all duration-300">
+
           {/* Logo */}
           <a
             href="#home"
-            className="flex items-center gap-2 text-3xl font-extrabold text-blue-700 tracking-tight drop-shadow-lg"
+            className="flex items-center gap-3 text-3xl font-extrabold text-blue-700 tracking-tight"
             onClick={(e) => handleNavClick(e, "#home")}
           >
-            <span className="bg-gradient-to-r from-blue-500 via-blue-400 to-cyan-400 bg-clip-text text-transparent">
-              Anthem
-            </span>
-            <span className="text-gray-900">Fans</span>
+            <img
+              src={anthemLogo}
+              alt="Anthem Logo"
+              className="h-10 w-auto object-contain"
+            />
           </a>
 
           {/* Desktop Nav */}
@@ -119,13 +115,12 @@ const Header = () => {
                     className={`group flex items-center h-full px-4 py-2 rounded-lg font-semibold text-base transition-all duration-200 ${
                       activeSection === link.section
                         ? "text-blue-600"
-                        : "text-gray-700"
+                        : "text-gray-800"
                     } hover:text-blue-600 hover:bg-blue-50 relative`}
                     style={{ height: "48px" }}
                   >
                     {link.label}
                     <span className="ml-1 text-xs">&#9662;</span>
-                    {/* Underline animation */}
                     <span
                       className={`absolute left-4 right-4 bottom-1 h-0.5 rounded bg-gradient-to-r from-blue-400 to-cyan-400 transition-all duration-300 ${
                         activeSection === link.section
@@ -134,6 +129,7 @@ const Header = () => {
                       } group-hover:opacity-100 group-hover:scale-x-100`}
                     />
                   </a>
+
                   {/* Dropdown */}
                   {showProductsDropdown && (
                     <div
@@ -142,43 +138,27 @@ const Header = () => {
                       onMouseLeave={() => setShowProductsDropdown(false)}
                     >
                       <div>
-                        <div className="mb-2 text-lg font-bold text-blue-700">
-                          Ceiling Fans
-                        </div>
+                        <div className="mb-2 text-lg font-bold text-blue-700">Ceiling Fans</div>
                         <div className="flex gap-4 mb-4">
-                          {ceilingFans.map((fan, idx) => (
+                          {ceilingFans.map((fan) => (
                             <div
                               key={fan.name}
                               className="bg-gradient-to-br from-blue-50 to-white border border-blue-100 rounded-xl p-3 text-center w-1/3 shadow hover:shadow-lg transition"
                             >
-                              <img
-                                src={fan.image}
-                                alt={fan.name}
-                                className="h-20 mx-auto object-contain mb-2 drop-shadow"
-                              />
-                              <div className="font-semibold text-blue-700">
-                                {fan.name}
-                              </div>
+                              <img src={fan.image} alt={fan.name} className="h-20 mx-auto mb-2" />
+                              <div className="font-semibold text-blue-700">{fan.name}</div>
                             </div>
                           ))}
                         </div>
-                        <div className="mb-2 text-lg font-bold text-blue-700">
-                          Pedestal Fans
-                        </div>
+                        <div className="mb-2 text-lg font-bold text-blue-700">Pedestal Fans</div>
                         <div className="flex gap-4">
-                          {pedestalFans.map((fan, idx) => (
+                          {pedestalFans.map((fan) => (
                             <div
                               key={fan.name}
                               className="bg-gradient-to-br from-blue-50 to-white border border-blue-100 rounded-xl p-3 text-center w-1/4 shadow hover:shadow-lg transition"
                             >
-                              <img
-                                src={fan.image}
-                                alt={fan.name}
-                                className="h-20 mx-auto object-contain mb-2 drop-shadow"
-                              />
-                              <div className="font-semibold text-blue-700">
-                                {fan.name}
-                              </div>
+                              <img src={fan.image} alt={fan.name} className="h-20 mx-auto mb-2" />
+                              <div className="font-semibold text-blue-700">{fan.name}</div>
                             </div>
                           ))}
                         </div>
@@ -194,12 +174,11 @@ const Header = () => {
                   className={`group flex items-center h-full px-4 py-2 rounded-lg font-semibold text-base transition-all duration-200 ${
                     activeSection === link.section
                       ? "text-blue-600"
-                      : "text-gray-700"
+                      : "text-gray-800"
                   } hover:text-blue-600 hover:bg-blue-50 relative`}
                   style={{ height: "48px" }}
                 >
                   {link.label}
-                  {/* Underline animation */}
                   <span
                     className={`absolute left-4 right-4 bottom-1 h-0.5 rounded bg-gradient-to-r from-blue-400 to-cyan-400 transition-all duration-300 ${
                       activeSection === link.section
@@ -215,12 +194,11 @@ const Header = () => {
                   className={`group flex items-center h-full px-4 py-2 rounded-lg font-semibold text-base transition-all duration-200 ${
                     location.pathname === link.to
                       ? "text-blue-600"
-                      : "text-gray-700"
+                      : "text-gray-800"
                   } hover:text-blue-600 hover:bg-blue-50 relative`}
                   style={{ height: "48px" }}
                 >
                   {link.label}
-                  {/* Underline animation */}
                   <span
                     className={`absolute left-4 right-4 bottom-1 h-0.5 rounded bg-gradient-to-r from-blue-400 to-cyan-400 transition-all duration-300 ${
                       location.pathname === link.to
@@ -235,16 +213,17 @@ const Header = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-blue-700 bg-white/80 rounded-full p-2 shadow hover:bg-blue-50 transition"
+            className="md:hidden text-blue-700 bg-blue-100/90 rounded-full p-2 shadow hover:bg-blue-200 transition"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
         </div>
       </div>
-      {/* Mobile Menu Drawer */}
+
+      {/* Mobile Nav */}
       <div
-        className={`md:hidden fixed left-0 right-0 top-[70px] bg-slate-900/95 border-b border-blue-100 shadow-xl rounded-b-2xl px-6 pb-4 pt-2 space-y-4 z-40 transition-all duration-300 ${
+        className={`md:hidden fixed left-0 right-0 top-[70px] bg-white/95 border-b border-blue-100 shadow-xl rounded-b-2xl px-6 pb-4 pt-2 space-y-4 z-40 transition-all duration-300 ${
           mobileMenuOpen ? "block animate-slide-down" : "hidden"
         }`}
         style={{ backdropFilter: "blur(12px)" }}
@@ -258,7 +237,7 @@ const Header = () => {
               className={`block px-3 py-2 rounded-lg font-semibold text-base ${
                 activeSection === link.section
                   ? "text-blue-600 bg-blue-50"
-                  : "text-gray-700"
+                  : "text-gray-800"
               } hover:text-blue-600 hover:bg-blue-50 transition`}
             >
               {link.label}
@@ -270,7 +249,7 @@ const Header = () => {
               className={`block px-3 py-2 rounded-lg font-semibold text-base ${
                 location.pathname === link.to
                   ? "text-blue-600 bg-blue-50"
-                  : "text-gray-700"
+                  : "text-gray-800"
               } hover:text-blue-600 hover:bg-blue-50 transition`}
               onClick={() => setMobileMenuOpen(false)}
             >
@@ -279,16 +258,18 @@ const Header = () => {
           )
         )}
       </div>
+
       {/* Animations */}
       <style>{`
         @keyframes fade-in {
-          from { opacity: 0; transform: translateY(10px);}
-          to { opacity: 1; transform: translateY(0);}
+          from { opacity: 0; transform: translateY(10px); }
+          to { opacity: 1; transform: translateY(0); }
         }
         .animate-fade-in { animation: fade-in 0.25s ease; }
+
         @keyframes slide-down {
-          from { opacity: 0; transform: translateY(-16px);}
-          to { opacity: 1; transform: translateY(0);}
+          from { opacity: 0; transform: translateY(-16px); }
+          to { opacity: 1; transform: translateY(0); }
         }
         .animate-slide-down { animation: slide-down 0.25s ease; }
       `}</style>

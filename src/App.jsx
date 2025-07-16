@@ -69,6 +69,7 @@ function App() {
       {/* ✅ Chatbot Floating */}
       <Chatbot />
 
+      {/* Move Footer outside main/routes so it's always visible */}
       <Footer />
     </div>
   );

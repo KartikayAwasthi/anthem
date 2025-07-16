@@ -64,11 +64,10 @@ const Dealer = () => {
 
         {/* 🛒 Online Links */}
         <motion.div
-          ref={onlineLinksRef}
           className="flex flex-col md:flex-row justify-center gap-10 mb-16"
           initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
+          whileInView={{ opacity: 1, y: 20 }}
+          animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.1, duration: 0.5 }}
         >
           <a
