@@ -7,7 +7,7 @@ import skyroImg from "../assets/fan1.webp";
 import inaraImg from "../assets/fan2.webp";
 import evaaraImg from "../assets/fan3.webp";
 import pedestalImg from "../assets/pedestal.webp";
-import anthemLogo from "../assets/Anthem-logo.png"; // ✅ Logo
+import anthemLogo from "../assets/Anthem-logo.png";
 
 const Header = () => {
   const location = useLocation();
@@ -28,7 +28,7 @@ const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sectionIds = ["home", "products", "about", "dealer", "contact"];
+      const sectionIds = ["home", "products", "about", "dealer", "store-locator", "contact"];
       let current = "home";
       for (const id of sectionIds) {
         const el = document.getElementById(id);
@@ -84,17 +84,16 @@ const Header = () => {
     <header className="fixed top-0 left-0 w-full z-50">
       <div className="mx-auto max-w-7xl px-4 md:px-10">
         <div className="mt-3 mb-3 rounded-2xl shadow-md bg-white/80 backdrop-blur-md border border-blue-100 flex justify-between items-center px-4 py-2 md:py-3 transition-all duration-300">
-
           {/* Logo */}
           <a
             href="#home"
-            className="flex items-center gap-3 text-3xl font-extrabold text-blue-700 tracking-tight"
+            className="flex items-center gap-3 text-3xl font-extrabold text-[#ba6a5a] tracking-tight"
             onClick={(e) => handleNavClick(e, "#home")}
           >
             <img
               src={anthemLogo}
               alt="Anthem Logo"
-              className="h-10 w-auto object-contain"
+              className="h-12 w-auto object-contain"
             />
           </a>
 
@@ -114,15 +113,15 @@ const Header = () => {
                     onClick={(e) => handleNavClick(e, link.to)}
                     className={`group flex items-center h-full px-4 py-2 rounded-lg font-semibold text-base transition-all duration-200 ${
                       activeSection === link.section
-                        ? "text-blue-600"
+                        ? "text-[#ba6a5a]"
                         : "text-gray-800"
-                    } hover:text-blue-600 hover:bg-blue-50 relative`}
+                    } hover:text-[#ba6a5a] hover:bg-[#f9e6e3] relative`}
                     style={{ height: "48px" }}
                   >
                     {link.label}
                     <span className="ml-1 text-xs">&#9662;</span>
                     <span
-                      className={`absolute left-4 right-4 bottom-1 h-0.5 rounded bg-gradient-to-r from-blue-400 to-cyan-400 transition-all duration-300 ${
+                      className={`absolute left-4 right-4 bottom-1 h-0.5 rounded bg-gradient-to-r from-[#ba6a5a] to-[#ba6a5a] transition-all duration-300 ${
                         activeSection === link.section
                           ? "opacity-100 scale-x-100"
                           : "opacity-0 scale-x-0"
@@ -130,35 +129,34 @@ const Header = () => {
                     />
                   </a>
 
-                  {/* Dropdown */}
                   {showProductsDropdown && (
                     <div
-                      className="absolute left-0 top-full mt-3 w-[600px] bg-white/95 border border-blue-100 rounded-2xl shadow-2xl p-6 z-50 animate-fade-in"
+                      className="absolute left-0 top-full mt-3 w-[600px] bg-gray-200 border border-blue-100 rounded-2xl shadow-2xl p-6 z-50 animate-fade-in"
                       onMouseEnter={() => setShowProductsDropdown(true)}
                       onMouseLeave={() => setShowProductsDropdown(false)}
                     >
                       <div>
-                        <div className="mb-2 text-lg font-bold text-blue-700">Ceiling Fans</div>
+                        <div className="mb-2 text-lg font-bold text-[#1c1c1c]">Ceiling Fans</div>
                         <div className="flex gap-4 mb-4">
                           {ceilingFans.map((fan) => (
                             <div
                               key={fan.name}
-                              className="bg-gradient-to-br from-blue-50 to-white border border-blue-100 rounded-xl p-3 text-center w-1/3 shadow hover:shadow-lg transition"
+                              className="bg-gradient-to-br from-[#f8e3e0] to-white border border-blue-100 rounded-xl p-3 text-center w-1/3 shadow hover:shadow-lg transition"
                             >
                               <img src={fan.image} alt={fan.name} className="h-20 mx-auto mb-2" />
-                              <div className="font-semibold text-blue-700">{fan.name}</div>
+                              <div className="font-semibold text-[#1c1c1c]">{fan.name}</div>
                             </div>
                           ))}
                         </div>
-                        <div className="mb-2 text-lg font-bold text-blue-700">Pedestal Fans</div>
+                        <div className="mb-2 text-lg font-bold text-[#1c1c1c]">Pedestal Fans</div>
                         <div className="flex gap-4">
                           {pedestalFans.map((fan) => (
                             <div
                               key={fan.name}
-                              className="bg-gradient-to-br from-blue-50 to-white border border-blue-100 rounded-xl p-3 text-center w-1/4 shadow hover:shadow-lg transition"
+                              className="bg-gradient-to-br from-[#f8e3e0] to-white border border-blue-100 rounded-xl p-3 text-center w-1/4 shadow hover:shadow-lg transition"
                             >
                               <img src={fan.image} alt={fan.name} className="h-20 mx-auto mb-2" />
-                              <div className="font-semibold text-blue-700">{fan.name}</div>
+                              <div className="font-semibold text-[#1c1c1c]">{fan.name}</div>
                             </div>
                           ))}
                         </div>
@@ -173,14 +171,14 @@ const Header = () => {
                   onClick={(e) => handleNavClick(e, link.to)}
                   className={`group flex items-center h-full px-4 py-2 rounded-lg font-semibold text-base transition-all duration-200 ${
                     activeSection === link.section
-                      ? "text-blue-600"
+                      ? "text-[#ba6a5a]"
                       : "text-gray-800"
-                  } hover:text-blue-600 hover:bg-blue-50 relative`}
+                  } hover:text-[#ba6a5a] hover:bg-[#f9e6e3] relative`}
                   style={{ height: "48px" }}
                 >
                   {link.label}
                   <span
-                    className={`absolute left-4 right-4 bottom-1 h-0.5 rounded bg-gradient-to-r from-blue-400 to-cyan-400 transition-all duration-300 ${
+                    className={`absolute left-4 right-4 bottom-1 h-0.5 rounded bg-gradient-to-r from-[#ba6a5a] to-[#ba6a5a] transition-all duration-300 ${
                       activeSection === link.section
                         ? "opacity-100 scale-x-100"
                         : "opacity-0 scale-x-0"
@@ -193,14 +191,14 @@ const Header = () => {
                   to={link.to}
                   className={`group flex items-center h-full px-4 py-2 rounded-lg font-semibold text-base transition-all duration-200 ${
                     location.pathname === link.to
-                      ? "text-blue-600"
+                      ? "text-[#ba6a5a]"
                       : "text-gray-800"
-                  } hover:text-blue-600 hover:bg-blue-50 relative`}
+                  } hover:text-[#ba6a5a] hover:bg-[#f9e6e3] relative`}
                   style={{ height: "48px" }}
                 >
                   {link.label}
                   <span
-                    className={`absolute left-4 right-4 bottom-1 h-0.5 rounded bg-gradient-to-r from-blue-400 to-cyan-400 transition-all duration-300 ${
+                    className={`absolute left-4 right-4 bottom-1 h-0.5 rounded bg-gradient-to-r from-[#ba6a5a] to-[#ba6a5a] transition-all duration-300 ${
                       location.pathname === link.to
                         ? "opacity-100 scale-x-100"
                         : "opacity-0 scale-x-0"
@@ -213,7 +211,7 @@ const Header = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-blue-700 bg-blue-100/90 rounded-full p-2 shadow hover:bg-blue-200 transition"
+            className="md:hidden text-[#ba6a5a] bg-[#f8e3e0] rounded-full p-2 shadow hover:bg-[#f3d5cd] transition"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
@@ -236,9 +234,9 @@ const Header = () => {
               onClick={(e) => handleNavClick(e, link.to)}
               className={`block px-3 py-2 rounded-lg font-semibold text-base ${
                 activeSection === link.section
-                  ? "text-blue-600 bg-blue-50"
+                  ? "text-[#ba6a5a] bg-[#f9e6e3]"
                   : "text-gray-800"
-              } hover:text-blue-600 hover:bg-blue-50 transition`}
+              } hover:text-[#ba6a5a] hover:bg-[#f9e6e3] transition`}
             >
               {link.label}
             </a>
@@ -248,9 +246,9 @@ const Header = () => {
               to={link.to}
               className={`block px-3 py-2 rounded-lg font-semibold text-base ${
                 location.pathname === link.to
-                  ? "text-blue-600 bg-blue-50"
+                  ? "text-[#ba6a5a] bg-[#f9e6e3]"
                   : "text-gray-800"
-              } hover:text-blue-600 hover:bg-blue-50 transition`}
+              } hover:text-[#ba6a5a] hover:bg-[#f9e6e3] transition`}
               onClick={() => setMobileMenuOpen(false)}
             >
               {link.label}

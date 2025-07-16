@@ -32,7 +32,7 @@ const Home = () => {
             className="w-full h-screen"
             renderIndicator={(_, isSelected) =>
               <span
-                className={`inline-block mx-1 w-3 h-3 rounded-full ${isSelected ? "bg-blue-400" : "bg-gray-600"}`}
+                className={`inline-block mx-1 w-3 h-3 rounded-full ${isSelected ? "bg-[#ba6a5a]" : "bg-gray-600"}`}
               />
             }
           >
@@ -81,7 +81,7 @@ const Home = () => {
               <img src={fan.image} alt={fan.name} className="h-44 w-full object-contain mb-4" />
               <h3 className="text-2xl font-semibold mb-2">Anthem {fan.name}</h3>
               <p className="text-gray-300 text-sm">Silent operation, smart control, superior airflow.</p>
-              <Link to="/products" className="inline-block mt-4 text-blue-400 hover:underline">
+              <Link to="/products" className="inline-block mt-4 text-[#e49385] hover:underline">
                 View Details →
               </Link>
             </motion.div>
@@ -99,7 +99,7 @@ const Home = () => {
             </div>
             <h3 className="text-2xl font-semibold mb-2">Dealers</h3>
             <p className="text-gray-300 text-sm">Find certified Anthem dealers near you.</p>
-            <Link to="#dealer" className="inline-block mt-4 text-blue-400 hover:underline">
+            <Link to="#dealer" className="inline-block mt-4 text-[#e49385] hover:underline">
               Find Dealers →
             </Link>
           </motion.div>

@@ -6,12 +6,14 @@ import skyroImg from "../assets/fan1.webp";
 import inaraImg from "../assets/fan2.webp";
 import evaaraImg from "../assets/fan3.webp";
 import pedestalImg from "../assets/pedestal.webp"; // Add your pedestal fan image here
+import fanRotatingGif from "../assets/fan-rotating.gif"; // New product image
 
 const Product = () => {
   const ceilingFans = [
     { name: "SKYRO", image: skyroImg },
     { name: "INARA", image: inaraImg },
     { name: "eVAARA", image: evaaraImg },
+    { name: "SPINZ", image: fanRotatingGif }, // Random name for GIF product
   ];
 
   const pedestalFans = [
@@ -41,6 +43,8 @@ const Product = () => {
               whileInView={{ opacity: 1, y: 20 }}
               transition={{ duration: 0.4, delay: index * 0.1 }}
             >
+
+              
               <img
                 src={fan.image}
                 alt={fan.name}

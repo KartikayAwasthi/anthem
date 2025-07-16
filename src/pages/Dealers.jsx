@@ -1,7 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Store } from "lucide-react";
-import { useInView } from "react-intersection-observer";
 import amazonLogo from "../assets/amazon.png";
 import flipkartLogo from "../assets/flipkart.png";
 
@@ -33,17 +32,12 @@ const certifiedDealers = [
 ];
 
 const Dealer = () => {
-  const [onlineLinksRef, inViewOnlineLinks] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
-
   return (
-    <div className="bg-slate-950 text-white py-20 w-full" id="dealer">
+    <div className="bg-[#1c1c1c] text-white py-20 w-full" id="dealer">
       <div className="px-4 md:px-12 max-w-6xl mx-auto">
         {/* Title */}
         <motion.h2
-          className="text-4xl font-bold text-center mb-4"
+          className="text-4xl font-bold text-center mb-4 text-[#ba6a5a]"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 20 }}
           viewport={{ once: true }}
@@ -67,7 +61,7 @@ const Dealer = () => {
           className="flex flex-col md:flex-row justify-center gap-10 mb-16"
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, y: 20 }}
-          animate={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
           transition={{ delay: 0.1, duration: 0.5 }}
         >
           <a
@@ -91,13 +85,13 @@ const Dealer = () => {
 
         {/* 🏪 Certified Dealers */}
         <motion.div
-          className="bg-slate-800 p-6 rounded-xl shadow-xl w-full max-w-3xl mx-auto"
+          className="bg-[#2f2f2f] p-6 rounded-xl shadow-xl w-full max-w-3xl mx-auto"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 20 }}
           viewport={{ once: true }}
           transition={{ delay: 0.4, duration: 0.6 }}
         >
-          <h3 className="text-2xl font-semibold text-center mb-6 flex items-center justify-center gap-2">
+          <h3 className="text-2xl font-semibold text-center mb-6 flex items-center justify-center gap-2 text-[#ba6a5a]">
             <Store className="w-6 h-6" /> Certified Dealer Network
           </h3>
 
@@ -105,21 +99,21 @@ const Dealer = () => {
             {certifiedDealers.map((dealer, index) => (
               <motion.li
                 key={index}
-                className="bg-slate-700 rounded-lg p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center"
+                className="bg-gradient-to-r from-[#ba6a5a]/10 via-[#e49385]/10 to-[#efb4a5]/10 border border-[#ba6a5a]/30 rounded-lg p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center shadow-md backdrop-blur-md"
                 whileHover={{ scale: 1.02 }}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 20 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.5 + index * 0.1, duration: 0.4 }}
               >
-                <div className="flex items-center gap-2">
+                <div className="flex items-start sm:items-center gap-3">
                   <a
                     href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
                       dealer.name + " " + dealer.city
                     )}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-400 underline hover:text-blue-300"
+                    className="text-[#efb4a5] text-lg hover:text-[#e49385] transition-colors"
                     title={`View ${dealer.name} on Google Maps`}
                   >
                     📍
@@ -129,11 +123,15 @@ const Dealer = () => {
                     <p className="text-gray-300 text-sm">{dealer.city}</p>
                     <a
                       href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-                        dealer.name + " " + dealer.city + " " + dealer.location
+                        dealer.name +
+                          " " +
+                          dealer.city +
+                          " " +
+                          dealer.location
                       )}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-gray-400 text-xs underline hover:text-blue-300"
+                      className="text-gray-400 text-xs underline hover:text-[#efb4a5]"
                     >
                       {dealer.location}
                     </a>
@@ -141,7 +139,7 @@ const Dealer = () => {
                 </div>
                 <a
                   href={`tel:${dealer.phone.replace(/[^+\d]/g, "")}`}
-                  className="text-blue-400 mt-2 sm:mt-0 text-sm hover:underline"
+                  className="text-[#e49385] mt-2 sm:mt-0 text-sm hover:underline"
                 >
                   {dealer.phone}
                 </a>

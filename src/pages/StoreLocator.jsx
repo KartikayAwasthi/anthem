@@ -50,16 +50,15 @@ const StoreLocator = () => {
       store.pin.includes(search)
   );
 
-  // Default map center (India)
   const mapCenter = selectedStore
     ? { lat: selectedStore.lat, lng: selectedStore.lng }
     : { lat: 15.386037770764117, lng: 74.03248843465708 };
 
   return (
-    <div className="bg-slate-950 text-white py-20 w-full" id="store-locator">
+    <div className="bg-[#1c1c1c] text-white py-20 w-full" id="store-locator">
       <div className="px-4 md:px-12 max-w-5xl mx-auto">
         <motion.h2
-          className="text-4xl font-bold text-center mb-4"
+          className="text-4xl font-bold text-center mb-4 text-[#ba6a5a]"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 20 }}
           transition={{ duration: 0.6 }}
@@ -85,10 +84,12 @@ const StoreLocator = () => {
             placeholder="Search by store name or PIN code..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full p-3 rounded-lg border border-gray-600 bg-slate-800 text-white focus:outline-none focus:border-blue-400"
+            className="w-full p-3 rounded-lg border border-[#ba6a5a] bg-slate-800 text-white placeholder-gray-400 focus:outline-none focus:border-[#efb4a5] transition"
           />
         </motion.div>
+
         <div className="flex flex-col md:flex-row gap-8 w-full">
+          {/* Store List */}
           <div className="md:w-1/2 space-y-4">
             {filteredStores.length === 0 && (
               <motion.div
@@ -103,10 +104,10 @@ const StoreLocator = () => {
             {filteredStores.map((store, idx) => (
               <motion.div
                 key={idx}
-                className={`p-4 rounded-lg border cursor-pointer ${
-                  selectedStore && selectedStore.name === store.name
-                    ? "border-blue-400 bg-slate-800"
-                    : "border-white/10 bg-slate-800"
+                className={`p-4 rounded-lg cursor-pointer border transition-all ${
+                  selectedStore?.name === store.name
+                    ? "border-[#efb4a5] bg-slate-800 shadow-md"
+                    : "border-white/10 bg-slate-800 hover:border-[#ba6a5a]"
                 }`}
                 onClick={() => setSelectedStore(store)}
                 whileHover={{ scale: 1.02 }}
@@ -114,7 +115,9 @@ const StoreLocator = () => {
                 whileInView={{ opacity: 1, y: 20 }}
                 transition={{ duration: 0.4, delay: idx * 0.1 }}
               >
-                <div className="font-semibold text-lg">{store.name}</div>
+                <div className="font-semibold text-lg text-[#e49385]">
+                  {store.name}
+                </div>
                 <div className="text-gray-300">{store.address}</div>
                 <div className="text-gray-400 text-sm">PIN: {store.pin}</div>
                 <a
@@ -123,15 +126,17 @@ const StoreLocator = () => {
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-400 underline text-xs"
+                  className="text-[#ba6a5a] underline text-xs hover:text-[#efb4a5]"
                 >
                   View on Google Maps
                 </a>
               </motion.div>
             ))}
           </div>
+
+          {/* Map */}
           <motion.div
-            className="md:w-1/2 h-96 rounded-lg overflow-hidden border border-white/10 bg-slate-800 shadow-lg"
+            className="md:w-1/2 h-96 rounded-lg overflow-hidden border border-[#ba6a5a]/20 bg-slate-800 shadow-lg"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 20 }}
             transition={{ delay: 0.2, duration: 0.6 }}

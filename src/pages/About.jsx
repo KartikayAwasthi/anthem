@@ -57,28 +57,28 @@ const About = () => {
 
               {/* 1991 */}
               <div className="flex flex-col items-center text-center">
-                <div className="bg-blue-600 w-6 h-6 rounded-full animate-pulse mb-2"></div>
+                <div className="bg-[#e49385] w-6 h-6 rounded-full animate-pulse mb-2"></div>
                 <h3 className="text-xl font-semibold">1991</h3>
                 <p className="text-gray-400 mt-2 max-w-xs">Started as an OEM supplier during India’s liberalization era.</p>
               </div>
 
               {/* 2010 */}
               <div className="flex flex-col items-center text-center">
-                <div className="bg-blue-600 w-6 h-6 rounded-full animate-pulse mb-2"></div>
+                <div className="bg-[#e49385] w-6 h-6 rounded-full animate-pulse mb-2"></div>
                 <h3 className="text-xl font-semibold">2010</h3>
                 <p className="text-gray-400 mt-2 max-w-xs">Opened a modern integrated factory in Goa with in-house painting, winding, and testing.</p>
               </div>
 
               {/* 2024 */}
               <div className="flex flex-col items-center text-center">
-                <div className="bg-blue-600 w-6 h-6 rounded-full animate-pulse mb-2"></div>
+                <div className="bg-[#e49385] w-6 h-6 rounded-full animate-pulse mb-2"></div>
                 <h3 className="text-xl font-semibold">2024</h3>
                 <p className="text-gray-400 mt-2 max-w-xs">Exporting to UAE, Iraq, Oman, Nepal, Bahrain, and parts of Africa.</p>
               </div>
             </div>
 
             {/* Connecting Line */}
-            <div className="absolute top-3 left-0 right-0 h-1 bg-blue-600/30 hidden md:block z-0"></div>
+            <div className="absolute top-3 left-0 right-0 h-1 bg-[#efb4a5] hidden md:block z-0"></div>
           </div>
 
           {/* Factory Image Gallery */}
@@ -107,7 +107,7 @@ const About = () => {
     <p className="text-gray-300 text-lg max-w-2xl">
       “From a small workshop to a global brand — Anthem’s journey is a reflection of our dedication to innovation, quality, and people.”
     </p>
-    <span className="text-blue-400 mt-2 font-semibold">— Elone Musk</span>
+    <span className="text-[#efb4a5] mt-2 font-semibold">— Elone Musk</span>
   </div>
 </motion.div>
 
@@ -144,12 +144,12 @@ const About = () => {
   transition={{ duration: 1 }}
 >
   <h2 className="text-2xl font-semibold mb-4">
-    Download Our Product Catalog 📘
+    Download Our Product Catalog 
   </h2>
   <a
     href={catalogPDF}
     download="Anthem_Fan_Catalog.pdf"
-    className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium px-6 py-3 rounded-lg transition shadow-md"
+    className="inline-block bg-[#ba6a5a] hover:bg-[#e49385] text-white font-medium px-6 py-3 rounded-lg transition shadow-md"
   >
     Download Catalog
   </a>
