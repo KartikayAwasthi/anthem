@@ -33,7 +33,7 @@ const certifiedDealers = [
 
 const Dealer = () => {
   return (
-    <div className="bg-[#1c1c1c] text-white py-20 w-full" id="dealer">
+    <div className="bg-[#1c1c1c] text-white py-10 w-full" id="dealer">
       <div className="px-4 md:px-12 max-w-6xl mx-auto">
         {/* Title */}
         <motion.h2
@@ -58,7 +58,7 @@ const Dealer = () => {
 
         {/* 🛒 Online Links */}
         <motion.div
-          className="flex flex-col md:flex-row justify-center gap-10 mb-16"
+          className="flex flex-col md:flex-row justify-center gap-8 mb-10"
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, y: 20 }}
           viewport={{ once: true }}
@@ -85,7 +85,7 @@ const Dealer = () => {
 
         {/* 🏪 Certified Dealers */}
         <motion.div
-          className="bg-[#2f2f2f] p-6 rounded-xl shadow-xl w-full max-w-3xl mx-auto"
+          className="bg-[#2f2f2f] p-4 rounded-xl shadow-xl w-full max-w-3xl mx-auto"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 20 }}
           viewport={{ once: true }}

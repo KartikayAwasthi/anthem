@@ -16,9 +16,9 @@ import fan3 from "../assets/fan3.webp";
 
 const Home = () => {
   return (
-    <div className="w-full min-h-screen overflow-x-hidden snap-y snap-mandatory scroll-smooth bg-slate-950 text-white">
+    <div className="w-full min-h-0 overflow-x-hidden snap-y snap-mandatory scroll-smooth bg-[#1c1c1c] text-white">
       {/* ✅ Hero Carousel */}
-      <section className="min-h-screen w-full flex items-center justify-center snap-start bg-slate-950">
+      <section className="h-[60vh] w-full flex items-center justify-center snap-start bg-[#1c1c1c]">
         <div className="fixed inset-0 z-0">
           <Carousel
             autoPlay
@@ -47,7 +47,7 @@ const Home = () => {
               </div>
             ))}
           </Carousel>
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-slate-950/60 to-slate-950/90 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#1c1c1c]/80 via-[#1c1c1c]/60 to-[#1c1c1c]/90 pointer-events-none" />
         </div>
         <div className="relative z-10 w-full max-w-6xl mx-auto flex flex-col items-center justify-center h-screen">
           {/* Optionally add overlay text or CTA here */}
@@ -55,9 +55,9 @@ const Home = () => {
       </section>
 
       {/* ✅ Top Picks */}
-      <section className="min-h-screen flex flex-col justify-center items-center text-center bg-slate-900 snap-start w-full px-4 md:px-12 py-16 rounded-3xl shadow-xl my-12">
+      <section className="py-8 flex flex-col justify-center items-center text-center bg-[#2f2f2f] snap-start w-full px-4 md:px-12 rounded-3xl shadow-xl my-6">
         <motion.h2
-          className="text-4xl font-bold mb-4"
+          className="text-4xl font-bold mb-4 text-[#ba6a5a]"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 20 }}
           transition={{ duration: 0.6 }}
@@ -65,30 +65,34 @@ const Home = () => {
           Our Top Picks
         </motion.h2>
 
-        
         <p className="text-gray-300 mb-10">Engineered for power, style & silence.</p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-5xl mx-auto">
-          {[{ image: fan1, name: "SKYRO" }, { image: fan2, name: "INARA" }, { image: fan3, name: "eVAARA" }].map((fan, index) => (
-            <motion.div
-              key={index}
-              className="bg-white/10 backdrop-blur-md p-6 rounded-2xl shadow-md hover:shadow-2xl transition border border-white/10"
-              whileHover={{ scale: 1.02 }}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 20 }}
-              transition={{ duration: 0.5, delay: index * 0.2 }}
-            >
-              <img src={fan.image} alt={fan.name} className="h-44 w-full object-contain mb-4" />
-              <h3 className="text-2xl font-semibold mb-2">Anthem {fan.name}</h3>
-              <p className="text-gray-300 text-sm">Silent operation, smart control, superior airflow.</p>
-              <Link to="/products" className="inline-block mt-4 text-[#e49385] hover:underline">
-                View Details →
-              </Link>
-            </motion.div>
+          { [
+            { image: fan1, name: "SKYRO", id: "skyro" }, 
+            { image: fan2, name: "INARA", id: "inara" }, 
+            { image: fan3, name: "eVAARA", id: "evaara" }
+          ].map((fan, index) => (
+            <Link key={index} to={`/fan/${fan.id}`}>
+              <motion.div
+                className="bg-[#1c1c1c]/60 backdrop-blur-md p-6 rounded-2xl shadow-md hover:shadow-2xl transition border border-[#ba6a5a]/30 cursor-pointer"
+                whileHover={{ scale: 1.02 }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 20 }}
+                transition={{ duration: 0.5, delay: index * 0.2 }}
+              >
+                <img src={fan.image} alt={fan.name} className="h-44 w-full object-contain mb-4" />
+                <h3 className="text-2xl font-semibold mb-2 text-[#ba6a5a]">Anthem {fan.name}</h3>
+                <p className="text-gray-300 text-sm">Silent operation, smart control, superior airflow.</p>
+                <span className="inline-block mt-4 text-[#e49385] hover:underline">
+                  View Details →
+                </span>
+              </motion.div>
+            </Link>
           ))}
           {/* Add Dealers card */}
           <motion.div
-            className="bg-white/10 backdrop-blur-md p-6 rounded-2xl shadow-md hover:shadow-2xl transition border border-white/10 flex flex-col items-center justify-center"
+            className="bg-[#1c1c1c]/60 backdrop-blur-md p-6 rounded-2xl shadow-md hover:shadow-2xl transition border border-[#ba6a5a]/30 flex flex-col items-center justify-center"
             whileHover={{ scale: 1.02 }}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 20 }}
@@ -97,7 +101,7 @@ const Home = () => {
             <div className="h-44 w-full flex items-center justify-center mb-4">
               <span className="text-6xl">🏪</span>
             </div>
-            <h3 className="text-2xl font-semibold mb-2">Dealers</h3>
+            <h3 className="text-2xl font-semibold mb-2 text-[#ba6a5a]">Dealers</h3>
             <p className="text-gray-300 text-sm">Find certified Anthem dealers near you.</p>
             <Link to="#dealer" className="inline-block mt-4 text-[#e49385] hover:underline">
               Find Dealers →
@@ -107,9 +111,9 @@ const Home = () => {
       </section>
 
       {/* ✅ Why Choose Anthem */}
-      <section className="min-h-screen flex flex-col justify-center items-center text-center bg-slate-950 snap-start w-full px-4 md:px-12 py-16 rounded-3xl shadow-xl my-12">
+      <section className="py-8 flex flex-col justify-center items-center text-center bg-[#1c1c1c] snap-start w-full px-4 md:px-12 rounded-3xl shadow-xl my-6">
         <motion.h2
-          className="text-4xl font-bold mb-6"
+          className="text-4xl font-bold mb-6 text-[#ba6a5a]"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 20 }}
           transition={{ duration: 0.6 }}
@@ -131,14 +135,14 @@ const Home = () => {
           ].map((feature, index) => (
             <motion.div
               key={index}
-              className="bg-white/10 backdrop-blur-md p-6 rounded-xl text-left border border-white/10 shadow hover:shadow-lg transition"
+              className="bg-[#2f2f2f] backdrop-blur-md p-6 rounded-xl text-left border border-[#ba6a5a]/30 shadow hover:shadow-lg transition"
               whileHover={{ y: -5 }}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 20 }}
               transition={{ duration: 0.4, delay: index * 0.1 }}
             >
               <div className="text-4xl mb-3">{feature.emoji}</div>
-              <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
+              <h3 className="text-xl font-bold mb-2 text-[#e49385]">{feature.title}</h3>
               <p className="text-gray-300">{feature.desc}</p>
             </motion.div>
           ))}

@@ -24,26 +24,25 @@ const About = () => {
   const [catalogRef, inViewCatalog] = useInView({ triggerOnce: true, threshold: 0.1 });
 
   return (
-    <div className="bg-slate-950 text-white min-h-screen py-20 w-full">
-
+    <div className="bg-[#1c1c1c] text-white min-h-0 py-10 w-full">
       {/* Title */}
       <motion.h1
-        className="text-4xl font-bold text-center mb-6 px-4 md:px-12"
+        className="text-4xl font-bold text-center mb-4 px-4 md:px-12 text-[#ba6a5a]"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 20 }}
         transition={{ duration: 0.6 }}
       >
         Our Story 🚀
       </motion.h1>
-      <p className="text-gray-300 text-center max-w-3xl mx-auto mb-14 px-4 md:px-12">
+      <p className="text-gray-300 text-center max-w-3xl mx-auto mb-8 px-4 md:px-12">
         Anthem began in 1991 with a simple vision — to create smarter, quieter, and more energy-efficient fans. Today, we’re a global brand trusted by lakhs.
       </p>
 
       {/* ✅ Modern Horizontal Timeline */}
-      <section className="py-20 bg-slate-900 text-white w-full px-4 md:px-12 rounded-3xl shadow-xl my-12" id="timeline">
+      <section className="py-10 bg-[#2f2f2f] text-white w-full px-4 md:px-12 rounded-3xl shadow-xl my-6" id="timeline">
         <div className="w-full">
           <motion.h2
-            className="text-3xl md:text-4xl font-bold text-center mb-12"
+            className="text-3xl md:text-4xl font-bold text-center mb-12 text-[#ba6a5a]"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 20 }}
             transition={{ duration: 0.5 }}
@@ -89,15 +88,15 @@ const About = () => {
         </div>
       </section>
 
-     {/* CEO Message */}
+      {/* CEO Message */}
 <motion.div
   ref={ceoRef}
-  className="mt-24 px-4 md:px-12"
+  className="mt-12 px-4 md:px-12"
   initial={{ opacity: 0, y: 20 }}
   animate={inViewCeo ? { opacity: 1, y: 20 } : {}}
   transition={{ duration: 1 }}
 >
-  <h2 className="text-3xl font-bold text-center mb-6">From the CEO 💬</h2>
+  <h2 className="text-3xl font-bold text-center mb-6 text-[#ba6a5a]">From the CEO 💬</h2>
   <div className="flex flex-col items-center text-center">
     <img
       src={ceoImg}
@@ -113,13 +112,13 @@ const About = () => {
 
 
       {/* Team Section */}
-      <div ref={teamRef} className={`transition-opacity duration-1000 ease-in-out mt-24 ${inViewTeam ? "opacity-100" : "opacity-0"} px-4 md:px-12`}>
-        <motion.h2 className="text-3xl font-bold text-center mb-10">Meet Our Team 👥</motion.h2>
+      <div ref={teamRef} className={`transition-opacity duration-1000 ease-in-out mt-12 ${inViewTeam ? "opacity-100" : "opacity-0"} px-4 md:px-12`}>
+        <motion.h2 className="text-3xl font-bold text-center mb-10 text-[#ba6a5a]">Meet Our Team 👥</motion.h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 text-center w-full mx-auto max-w-6xl">
           {team.map((member, idx) => (
             <motion.div
               key={idx}
-              className="bg-white/10 backdrop-blur-md p-6 rounded-xl shadow-md"
+              className="bg-[#2f2f2f] backdrop-blur-md p-6 rounded-xl shadow-md border border-[#ba6a5a]/30"
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.3 }}
             >
@@ -128,7 +127,7 @@ const About = () => {
                 alt={member.name}
                 className="w-28 h-28 mx-auto rounded-full object-cover mb-4 border border-white/20"
               />
-              <h3 className="text-xl font-semibold">{member.name}</h3>
+              <h3 className="text-xl font-semibold text-[#ba6a5a]">{member.name}</h3>
               <p className="text-gray-400">{member.role}</p>
             </motion.div>
           ))}
@@ -138,7 +137,7 @@ const About = () => {
       {/* Catalog Download */}
 <motion.div
   ref={catalogRef}
-  className="mt-24 text-center px-4 md:px-12"
+  className="mt-12 text-center px-4 md:px-12"
   initial={{ opacity: 0, y: 20 }}
   animate={inViewCatalog ? { opacity: 1, y: 20 } : {}}
   transition={{ duration: 1 }}
@@ -160,3 +159,4 @@ const About = () => {
 };
 
 export default About;
+

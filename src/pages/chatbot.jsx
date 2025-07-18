@@ -39,15 +39,15 @@ export default function Chatbot() {
       {!open ? (
         <button
           onClick={() => setOpen(true)}
-          className="bg-blue-600 hover:bg-blue-700 text-white rounded-full p-4 shadow-xl"
+          className="bg-[#ba6a5a] hover:bg-[#e49385] text-white rounded-full p-4 shadow-xl"
           aria-label="Open Chatbot"
         >
           <MessageSquare className="w-6 h-6" />
         </button>
       ) : (
-        <div className="w-80 bg-slate-900 rounded-2xl shadow-2xl border border-blue-400 overflow-hidden">
+        <div className="w-80 bg-[#2f2f2f] rounded-2xl shadow-2xl border border-[#ba6a5a] overflow-hidden">
           {/* Header */}
-          <div className="bg-blue-700 text-white px-4 py-3 flex justify-between items-center">
+          <div className="bg-[#ba6a5a] text-white px-4 py-3 flex justify-between items-center">
             <h4 className="font-semibold">Anthem Assistant</h4>
             <button onClick={() => setOpen(false)} className="text-white">
               <X />
@@ -55,13 +55,13 @@ export default function Chatbot() {
           </div>
 
           {/* Messages */}
-          <div className="p-4 h-64 overflow-y-auto space-y-3 bg-slate-800 text-sm">
+          <div className="p-4 h-64 overflow-y-auto space-y-3 bg-[#1c1c1c] text-sm">
             {messages.map((msg, index) => (
               <div
                 key={index}
                 className={`${
                   msg.from === "user"
-                    ? "text-right text-blue-400"
+                    ? "text-right text-[#e49385]"
                     : "text-left text-gray-200"
                 }`}
               >
@@ -71,12 +71,12 @@ export default function Chatbot() {
           </div>
 
           {/* Options */}
-          <div className="p-4 border-t border-blue-800 space-y-2 bg-slate-900">
+          <div className="p-4 border-t border-[#ba6a5a]/30 space-y-2 bg-[#2f2f2f]">
             {questions.map((q, idx) => (
               <button
                 key={idx}
                 onClick={() => handleQuestionClick(q)}
-                className="w-full text-left px-3 py-2 bg-slate-800 rounded hover:bg-blue-900 text-gray-200 text-sm"
+                className="w-full text-left px-3 py-2 bg-[#1c1c1c] rounded hover:bg-[#ba6a5a] text-gray-200 text-sm"
               >
                 {q.text}
               </button>

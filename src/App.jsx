@@ -9,10 +9,12 @@ import Dealer from "./pages/Dealers";
 import Contact from "./pages/contact";
 import StoreLocator from "./pages/StoreLocator";
 import Chatbot from "./pages/chatbot"; // ✅ Floating chatbot
+import Support from "./pages/Support";
+import FanDetail from "./pages/FanDetail";
 
 function App() {
   return (
-    <div className="scroll-smooth bg-slate-950 text-white">
+    <div className="scroll-smooth bg-[#1c1c1c] text-white">
       <Header />
 
       <main>
@@ -21,28 +23,32 @@ function App() {
             path="/"
             element={
               <>
-                <section id="home">
+                <section id="home" className="py-8">
                   <Home />
                 </section>
-                <section id="products">
+                <section id="products" className="py-8">
                   <Products />
                 </section>
-                <section id="about">
+                <section id="about" className="py-8">
                   <About />
                 </section>
-                <section id="dealer">
+                <section id="dealer" className="py-8">
                   <Dealer />
                 </section>
-                <section id="store-locator">
+                <section id="store-locator" className="py-8">
                   <StoreLocator />
                 </section>
-                <section id="contact">
+                <section id="contact" className="py-8">
                   <Contact />
+                </section>
+                <section id="support" className="py-8">
+                  <Support />
                 </section>
               </>
             }
           />
-          {/* Optional: add individual routes for each section if needed */}
+          <Route path="/fan/:fanId" element={<FanDetail />} />
+          <Route path="/support" element={<Support />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>

@@ -48,32 +48,57 @@ const Header = () => {
   }, []);
 
   const handleNavClick = (e, to) => {
-    if (to.startsWith("#")) {
+    if (to === "/" || to === "#home") {
+      // For home, always navigate to root and scroll to top
       e.preventDefault();
-      const id = to.replace("#", "");
-      const el = document.getElementById(id);
-      if (el) {
+      if (location.pathname !== "/") {
+        // If not on home page, navigate to home first
+        window.location.href = "/";
+      } else {
+        // If already on home page, just scroll to top
         window.scrollTo({
-          top: el.offsetTop - 64,
+          top: 0,
           behavior: "smooth",
         });
       }
+      setMobileMenuOpen(false);
+    } else if (to.startsWith("#")) {
+      e.preventDefault();
+      // Only handle section scrolling if we're on the home page
+      if (location.pathname === "/") {
+        const id = to.replace("#", "");
+        const el = document.getElementById(id);
+        if (el) {
+          window.scrollTo({
+            top: el.offsetTop - 64,
+            behavior: "smooth",
+          });
+        }
+      } else {
+        // If on a different page, navigate to home with the section
+        window.location.href = "/" + to;
+      }
+      setMobileMenuOpen(false);
+    } else if (to === "/support") {
       setMobileMenuOpen(false);
     }
   };
 
   const ceilingFans = [
-    { name: "SKYRO", image: skyroImg },
-    { name: "INARA", image: inaraImg },
-    { name: "eVAARA", image: evaaraImg },
+    { name: "SKYRO", image: skyroImg, id: "skyro" },
+    { name: "INARA", image: inaraImg, id: "inara" },
+    { name: "eVAARA", image: evaaraImg, id: "evaara" },
   ];
-  const pedestalFans = [{ name: "PEDESTAL PRO", image: pedestalImg }];
+  const pedestalFans = [{ name: "PEDESTAL PRO", image: pedestalImg, id: "pedestalpro" }];
 
   useEffect(() => {
     if (!showProductsDropdown) return;
     const handler = (e) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
-        setShowProductsDropdown(false);
+        // Increase delay to 800ms to make clicking easier
+        setTimeout(() => {
+          setShowProductsDropdown(false);
+        }, 800);
       }
     };
     document.addEventListener("mousedown", handler);
@@ -81,21 +106,21 @@ const Header = () => {
   }, [showProductsDropdown]);
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50">
+    <header className="fixed top-0 left-0 w-full z-50 bg-white/90 backdrop-blur-md shadow-sm">
       <div className="mx-auto max-w-7xl px-4 md:px-10">
-        <div className="mt-3 mb-3 rounded-2xl shadow-md bg-white/80 backdrop-blur-md border border-blue-100 flex justify-between items-center px-4 py-2 md:py-3 transition-all duration-300">
+        <div className="flex justify-between items-center px-4 py-3 transition-all duration-300">
           {/* Logo */}
-          <a
-            href="#home"
+          <Link
+            to="/"
+            onClick={(e) => handleNavClick(e, "/")}
             className="flex items-center gap-3 text-3xl font-extrabold text-[#ba6a5a] tracking-tight"
-            onClick={(e) => handleNavClick(e, "#home")}
           >
             <img
               src={anthemLogo}
               alt="Anthem Logo"
               className="h-12 w-auto object-contain"
             />
-          </a>
+          </Link>
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex space-x-2 relative items-center h-12">
@@ -105,7 +130,10 @@ const Header = () => {
                   key={link.to}
                   className="relative flex items-center h-full"
                   onMouseEnter={() => setShowProductsDropdown(true)}
-                  onMouseLeave={() => setShowProductsDropdown(false)}
+                  onMouseLeave={() => {
+                    // Increase delay to 800ms before hiding dropdown
+                    setTimeout(() => setShowProductsDropdown(false), 800);
+                  }}
                   ref={dropdownRef}
                 >
                   <a
@@ -133,31 +161,46 @@ const Header = () => {
                     <div
                       className="absolute left-0 top-full mt-3 w-[600px] bg-gray-200 border border-blue-100 rounded-2xl shadow-2xl p-6 z-50 animate-fade-in"
                       onMouseEnter={() => setShowProductsDropdown(true)}
-                      onMouseLeave={() => setShowProductsDropdown(false)}
+                      onMouseLeave={() => {
+                        // Increase delay to 800ms before hiding dropdown
+                        setTimeout(() => setShowProductsDropdown(false), 800);
+                      }}
                     >
                       <div>
                         <div className="mb-2 text-lg font-bold text-[#1c1c1c]">Ceiling Fans</div>
                         <div className="flex gap-4 mb-4">
                           {ceilingFans.map((fan) => (
-                            <div
+                            <Link
                               key={fan.name}
-                              className="bg-gradient-to-br from-[#f8e3e0] to-white border border-blue-100 rounded-xl p-3 text-center w-1/3 shadow hover:shadow-lg transition"
+                              to={`/fan/${fan.id}`}
+                              onClick={() => {
+                                // Immediate close on click
+                                setShowProductsDropdown(false);
+                              }}
+                              className="bg-gradient-to-br from-[#f8e3e0] to-white border border-blue-100 rounded-xl p-4 text-center w-1/3 shadow hover:shadow-xl transition-all duration-300 cursor-pointer hover:scale-105 hover:border-[#ba6a5a] group"
                             >
-                              <img src={fan.image} alt={fan.name} className="h-20 mx-auto mb-2" />
-                              <div className="font-semibold text-[#1c1c1c]">{fan.name}</div>
-                            </div>
+                              <img src={fan.image} alt={fan.name} className="h-20 mx-auto mb-3 group-hover:scale-110 transition-transform duration-300" />
+                              <div className="font-semibold text-[#1c1c1c] group-hover:text-[#ba6a5a] transition-colors">{fan.name}</div>
+                              <div className="text-xs text-gray-600 mt-1 opacity-0 group-hover:opacity-100 transition-opacity">View Details →</div>
+                            </Link>
                           ))}
                         </div>
                         <div className="mb-2 text-lg font-bold text-[#1c1c1c]">Pedestal Fans</div>
                         <div className="flex gap-4">
                           {pedestalFans.map((fan) => (
-                            <div
+                            <Link
                               key={fan.name}
-                              className="bg-gradient-to-br from-[#f8e3e0] to-white border border-blue-100 rounded-xl p-3 text-center w-1/4 shadow hover:shadow-lg transition"
+                              to={`/fan/${fan.id}`}
+                              onClick={() => {
+                                // Immediate close on click
+                                setShowProductsDropdown(false);
+                              }}
+                              className="bg-gradient-to-br from-[#f8e3e0] to-white border border-blue-100 rounded-xl p-4 text-center w-1/4 shadow hover:shadow-xl transition-all duration-300 cursor-pointer hover:scale-105 hover:border-[#ba6a5a] group"
                             >
-                              <img src={fan.image} alt={fan.name} className="h-20 mx-auto mb-2" />
-                              <div className="font-semibold text-[#1c1c1c]">{fan.name}</div>
-                            </div>
+                              <img src={fan.image} alt={fan.name} className="h-20 mx-auto mb-3 group-hover:scale-110 transition-transform duration-300" />
+                              <div className="font-semibold text-[#1c1c1c] group-hover:text-[#ba6a5a] transition-colors">{fan.name}</div>
+                              <div className="text-xs text-gray-600 mt-1 opacity-0 group-hover:opacity-100 transition-opacity">View Details →</div>
+                            </Link>
                           ))}
                         </div>
                       </div>
@@ -189,6 +232,7 @@ const Header = () => {
                 <Link
                   key={link.to}
                   to={link.to}
+                  onClick={() => setMobileMenuOpen(false)}
                   className={`group flex items-center h-full px-4 py-2 rounded-lg font-semibold text-base transition-all duration-200 ${
                     location.pathname === link.to
                       ? "text-[#ba6a5a]"
@@ -244,12 +288,12 @@ const Header = () => {
             <Link
               key={link.to}
               to={link.to}
+              onClick={() => setMobileMenuOpen(false)}
               className={`block px-3 py-2 rounded-lg font-semibold text-base ${
                 location.pathname === link.to
                   ? "text-[#ba6a5a] bg-[#f9e6e3]"
                   : "text-gray-800"
               } hover:text-[#ba6a5a] hover:bg-[#f9e6e3] transition`}
-              onClick={() => setMobileMenuOpen(false)}
             >
               {link.label}
             </Link>
@@ -276,3 +320,4 @@ const Header = () => {
 };
 
 export default Header;
+

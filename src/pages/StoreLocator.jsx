@@ -55,7 +55,7 @@ const StoreLocator = () => {
     : { lat: 15.386037770764117, lng: 74.03248843465708 };
 
   return (
-    <div className="bg-[#1c1c1c] text-white py-20 w-full" id="store-locator">
+    <div className="bg-[#1c1c1c] text-white py-10 w-full" id="store-locator">
       <div className="px-4 md:px-12 max-w-5xl mx-auto">
         <motion.h2
           className="text-4xl font-bold text-center mb-4 text-[#ba6a5a]"
@@ -66,7 +66,7 @@ const StoreLocator = () => {
           Store Locator
         </motion.h2>
         <motion.p
-          className="text-gray-300 text-center mb-8"
+          className="text-gray-300 text-center mb-4"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 20 }}
           transition={{ delay: 0.2, duration: 0.5 }}
@@ -74,7 +74,7 @@ const StoreLocator = () => {
           Find Anthem Fans stores near you by name or PIN code.
         </motion.p>
         <motion.div
-          className="mb-8 w-full max-w-2xl mx-auto"
+          className="mb-4 w-full max-w-2xl mx-auto"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 20 }}
           transition={{ delay: 0.3, duration: 0.5 }}
@@ -88,7 +88,7 @@ const StoreLocator = () => {
           />
         </motion.div>
 
-        <div className="flex flex-col md:flex-row gap-8 w-full">
+        <div className="flex flex-col md:flex-row gap-6 w-full">
           {/* Store List */}
           <div className="md:w-1/2 space-y-4">
             {filteredStores.length === 0 && (

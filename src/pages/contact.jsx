@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 
 const Contact = () => {
   return (
-    <div className="bg-[#1c1c1c] text-white py-20 w-full" id="contact">
+    <div className="bg-[#1c1c1c] text-white py-10 w-full" id="contact">
       <div className="px-4 md:px-12 max-w-4xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 w-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
           {/* Contact Form */}
           <motion.div
             className="bg-[#2f2f2f] p-8 rounded-xl shadow-lg"

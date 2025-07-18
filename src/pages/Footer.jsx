@@ -17,13 +17,22 @@ const Footer = () => {
           {/* Logo & Tagline */}
           <div className="flex flex-col items-start">
             <div className="flex items-center gap-3 mb-2">
-              <a href="#home">
+              <Link
+                to="/"
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.scrollTo({
+                    top: 0,
+                    behavior: "smooth",
+                  });
+                }}
+              >
                 <img
                   src={anthemLogo}
                   alt="Anthem Logo"
                   className="h-16 w-auto mb-3 object-contain cursor-pointer"
                 />
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -43,6 +52,15 @@ const Footer = () => {
                 <li key={link.to}>
                   <Link
                     to={link.to}
+                    onClick={(e) => {
+                      if (link.to === "/") {
+                        e.preventDefault();
+                        window.scrollTo({
+                          top: 0,
+                          behavior: "smooth",
+                        });
+                      }
+                    }}
                     className="hover:text-[#ba6a5a] transition font-medium"
                   >
                     {link.label}
